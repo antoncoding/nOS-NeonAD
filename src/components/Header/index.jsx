@@ -3,6 +3,7 @@ import injectSheet from "react-jss";
 import PropTypes from "prop-types";
 
 import SpinningLogo from "./../SpinningLogo";
+import nosbackground from "./../../assets/back.jpg";
 
 const styles = {
   header: {
@@ -18,8 +19,9 @@ const styles = {
 
 const Header = ({ classes, title }) => (
   <header className={classes.header}>
-    <h1 className={classes.title}>{title}</h1>
-    <SpinningLogo />
+    <h2 className={classes.title}>{title}</h2>
+    <img src={nosbackground} />
+
   </header>
 );
 
