@@ -8,7 +8,12 @@ const { injectNOS, nosProps } = react.default;
 const styles = {
   button: {
     margin: "16px",
-    fontSize: "14px"
+    padding:"6px",
+    fontSize: "16px",
+    borderRadius: "3px",
+    backgroundColor: "#4CAF50",
+    border: "none",
+    color: "white",
   }
 };
 
@@ -29,6 +34,7 @@ class NOSActions extends React.Component {
     const neo = "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b";
     const gas = "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7";
     const rpx = "ecc6b20d3ccac1ee9ef109af5a7cdb85706b1df9";
+    const ont = "ceab719b8baa2310f232ee0d277c061704541cfb";
 
     // Add your smart contract's scriptHash here
     const scriptHash = "";
@@ -69,9 +75,9 @@ class NOSActions extends React.Component {
         </button>
         <button
           className={classes.button}
-          onClick={() => this.handleAlert(nos.getBalance({ asset: rpx }))}
+          onClick={() => this.handleAlert(nos.getBalance({ asset: ont }))}
         >
-          Get RPX Balance
+          Get ONT Balance
         </button>
 
         <button className={classes.button} onClick={this.handleClaimGas}>
