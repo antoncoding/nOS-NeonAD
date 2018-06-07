@@ -29,22 +29,23 @@ class NOSActions extends React.Component {
       .catch(alert);
 
   render() {
-    const { classes, nos } = this.props;
+    var { classes, nos } = this.props;
+    var nos = window.NOS.V1;
 
     const neo = "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b";
     const gas = "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7";
     // const rpx = "ecc6b20d3ccac1ee9ef109af5a7cdb85706b1df9";
-    const ont = "ceab719b8baa2310f232ee0d277c061704541cfb";
+    // const ont = "ceab719b8baa2310f232ee0d277c061704541cfb";
     const nad = "daa8f8c84bc1220647f857e6ae37576d4f65fd9f";
 
     // Add your smart contract's scriptHash here
     const scriptHash = "daa8f8c84bc1220647f857e6ae37576d4f65fd9f";
 
     // The operation of your smart contract you want to (test)invoke
-    const operation = "balanceOf";
+    const operation = "createBoard";
 
     // The necessary arguments for you (test)invoke
-    const args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y'];
+    const args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y','anton.nos',86400,'https://i.ytimg.com/vi/UwYg9ppv9mk/maxresdefault.jpg'];
 
     // The storagekey you want to query
     const key = "NeonAD\x01.content";
@@ -59,21 +60,28 @@ class NOSActions extends React.Component {
 
     return (
       <React.Fragment>
-        <button className={classes.button} onClick={() => this.handleAlert(nos.getAddress())}>
+        <button className={classes.button} onClick={() => nos.getAddress()
+          .then((address) => alert(`Address: ${address}`))
+          .catch((err) => alert(`Error: ${err.message}`))}>
           Get Address
         </button>
+
         <button
           className={classes.button}
-          onClick={() => this.handleAlert(nos.getBalance({ asset: neo }))}
+          onClick={() => nos.getBalance({ asset: neo})
+            .then((balance) => alert(`Balance: ${balance}`))
+            .catch((err) => alert(`Error: ${err.message}`))}
         >
           Get NEO Balance
         </button>
+
         <button
           className={classes.button}
           onClick={() => this.handleAlert(nos.getBalance({ asset: gas }))}
         >
           Get GAS Balance
         </button>
+
         <button
           className={classes.button}
           onClick={() => this.handleAlert(nos.getBalance({ asset: nad }))}
@@ -88,7 +96,9 @@ class NOSActions extends React.Component {
           Send GAS to...
         </button>
 
-        <button className={classes.button} onClick={() => this.handleAlert(nos.testInvoke(invoke))}>
+        <button className={classes.button} onClick={() => nos.testInvoke(invoke)
+          .then((script) => alert(`Test invoke script: ${script} `))
+          .catch((err) => alert(`Error: ${err.message}`))}>
           TestInvoke
         </button>
         {/*
@@ -101,7 +111,10 @@ class NOSActions extends React.Component {
         */}
         <button
           className={classes.button}
-          onClick={() => this.handleAlert(nos.getStorage(getStorage))}
+          onClick={() => nos.getStorage(getStorage)
+            .then((content)=>console.log(content))
+            .catch((err)=>alert(`Error: ${err.message}`))
+          }
         >
           GetStorage
         </button>
