@@ -33,20 +33,21 @@ class NOSActions extends React.Component {
 
     const neo = "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b";
     const gas = "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7";
-    const rpx = "ecc6b20d3ccac1ee9ef109af5a7cdb85706b1df9";
+    // const rpx = "ecc6b20d3ccac1ee9ef109af5a7cdb85706b1df9";
     const ont = "ceab719b8baa2310f232ee0d277c061704541cfb";
+    const nad = "daa8f8c84bc1220647f857e6ae37576d4f65fd9f";
 
     // Add your smart contract's scriptHash here
-    const scriptHash = "";
+    const scriptHash = "daa8f8c84bc1220647f857e6ae37576d4f65fd9f";
 
     // The operation of your smart contract you want to (test)invoke
-    const operation = "";
+    const operation = "balanceOf";
 
     // The necessary arguments for you (test)invoke
-    const args = [];
+    const args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y'];
 
     // The storagekey you want to query
-    const key = "";
+    const key = "NeonAD\x01.content";
 
     // The amount and recipient of your send function
     const recipient = "";
@@ -75,9 +76,9 @@ class NOSActions extends React.Component {
         </button>
         <button
           className={classes.button}
-          onClick={() => this.handleAlert(nos.getBalance({ asset: ont }))}
+          onClick={() => this.handleAlert(nos.getBalance({ asset: nad }))}
         >
-          Get ONT Balance
+          Get NAD Balance
         </button>
 
         <button className={classes.button} onClick={this.handleClaimGas}>

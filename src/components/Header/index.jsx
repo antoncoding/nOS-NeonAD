@@ -20,8 +20,6 @@ const styles = {
 const Header = ({ classes, title }) => (
   <header className={classes.header}>
     <h2 className={classes.title}>{title}</h2>
-    <img src={nosbackground} />
-
   </header>
 );
 
