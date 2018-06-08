@@ -5,6 +5,12 @@ import PropTypes from "prop-types";
 import Header from "./../../components/Header";
 import NOSActions from "./../../components/NOSActions";
 
+import {
+  str2hexstring,
+  int2hex,
+  hexstring2str
+} from "@cityofzion/neon-js/src/utils";
+
 const styles = {
   "@import": "https://fonts.googleapis.com/css?family=Source+Sans+Pro",
   "@global html, body": {
