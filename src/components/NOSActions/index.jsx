@@ -2,6 +2,13 @@ import React from "react";
 import injectSheet from "react-jss";
 import PropTypes from "prop-types";
 import { react } from "@nosplatform/api-functions";
+import {
+  str2hexstring,
+  int2hex,
+  hexstring2str,
+  str2ab,
+  readVarInt
+} from "@cityofzion/neon-js/src/utils";
 
 const { injectNOS, nosProps } = react.default;
 
@@ -42,13 +49,15 @@ class NOSActions extends React.Component {
     const scriptHash = "daa8f8c84bc1220647f857e6ae37576d4f65fd9f";
 
     // The operation of your smart contract you want to (test)invoke
-    const operation = "createBoard";
+    const operation = "getBoardList";
 
     // The necessary arguments for you (test)invoke
-    const args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y','anton.nos',86400,'https://i.ytimg.com/vi/UwYg9ppv9mk/maxresdefault.jpg'];
+    const args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y'];
 
     // The storagekey you want to query
-    const key = "NeonAD\x01.content";
+    const key = "NeonAD\x02.content";
+
+    const balanceOf_args = ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y'];
 
     // The amount and recipient of your send function
     const recipient = "";
@@ -89,6 +98,15 @@ class NOSActions extends React.Component {
           Get NAD Balance
         </button>
 
+        <button
+          className={classes.button}
+          onClick={() => this.handleAlert(nos.testInvoke())}
+        >
+          Get NAD Balance
+        </button>
+
+
+
         <button className={classes.button} onClick={this.handleClaimGas}>
           Claim Gas
         </button>
@@ -97,7 +115,7 @@ class NOSActions extends React.Component {
         </button>
 
         <button className={classes.button} onClick={() => nos.testInvoke(invoke)
-          .then((script) => alert(`Test invoke script: ${script} `))
+          .then((script) => console.log(`Test invoke script: ${hexstring2str(script)} `))
           .catch((err) => alert(`Error: ${err.message}`))}>
           TestInvoke
         </button>
@@ -112,7 +130,7 @@ class NOSActions extends React.Component {
         <button
           className={classes.button}
           onClick={() => nos.getStorage(getStorage)
-            .then((content)=>console.log(content))
+            .then((content)=>console.log(str2hexstring(content)))
             .catch((err)=>alert(`Error: ${err.message}`))
           }
         >
